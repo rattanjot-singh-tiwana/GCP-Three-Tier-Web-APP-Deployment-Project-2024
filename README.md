@@ -14,12 +14,15 @@ Monitoring and Logging: Basic monitoring and logging for the Kubernetes cluster 
 
 
 Technologies Used
+
 Frontend: ReactJS, HTML, CSS
+
 Backend: Flask (Python)
+
 Database: MySQL/PostgreSQL
+
 Containerization: Docker
+
 Orchestration: Kubernetes (GKE)
+
 Version Control: GitHub
-
-
-
