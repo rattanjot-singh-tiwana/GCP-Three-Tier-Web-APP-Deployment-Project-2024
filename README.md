@@ -12,68 +12,14 @@ Monitoring and Logging: Basic monitoring and logging for the Kubernetes cluster 
 
 
 
-Setup Instructions
-Prerequisites
-Make sure you have the following installed:
 
-Docker: Install Docker
-Kubectl: Install Kubectl
-Google Cloud SDK: Install Google Cloud SDK
-Git: Install Git
-Local Development
-Frontend
-Navigate to the frontend/ directory.
-Install dependencies:
-npm install
-Start the development server:
-npm start
-The app will run at http://localhost:3000.
-Backend
-Navigate to the backend/ directory.
-Create a virtual environment and install dependencies:
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-Start the Flask server:
-flask run
-The backend will run at http://localhost:8082.
-Docker Setup
-Frontend Dockerization
-Navigate to the frontend/ directory.
-Build the Docker image:
-docker build -t frontend .
-Run the container:
-docker run -p 3000:80 frontend
-Backend Dockerization
-Navigate to the backend/ directory.
-Build the Docker image:
-docker build -t backend .
-Run the container:
-docker run -p 8082:8082 backend
-Kubernetes Setup
-Push Docker images to Google Container Registry (GCR):
+Technologies Used
+Frontend: ReactJS, HTML, CSS
+Backend: Flask (Python)
+Database: MySQL/PostgreSQL
+Containerization: Docker
+Orchestration: Kubernetes (GKE)
+Version Control: GitHub
 
-docker tag frontend gcr.io/[PROJECT_ID]/frontend:v1
-docker push gcr.io/[PROJECT_ID]/frontend:v1
 
-docker tag backend gcr.io/[PROJECT_ID]/backend:v1
-docker push gcr.io/[PROJECT_ID]/backend:v1
-Apply Kubernetes configuration:
 
-kubectl apply -f frontend/deployment.yaml
-kubectl apply -f backend/deployment.yaml
-Verify deployments:
-
-kubectl get pods
-kubectl get svc
-Access the frontend via the external IP of the frontend service.
-
-Version Control
-This project follows best practices for version control using GitHub.
-
-Branches:
-
-main: Stable branch with production-ready code.
-feature/[feature-name]: For developing new features.
-fix/[bug-name]: For bug fixes.
-Pull Requests: Each feature or bugfix is merged into the main branch using pull requests. Conflicts are resolved before merging.
