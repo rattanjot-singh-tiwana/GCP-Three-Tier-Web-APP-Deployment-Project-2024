@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload & Messages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .message {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label, input, textarea {
+            display: block;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Submit a Message</h1>
+
+<!-- Message form -->
+<form id="messageForm" method="POST">
+    <label for="message">Enter a message:</label>
+    <textarea name="message" id="message" required></textarea>
+    <button type="submit">Submit Message</button>
+</form>
+
+<p id="messageResult"></p>
+
+<h1>Upload a File</h1>
+
+<!-- File upload form -->
+<form action="/api/upload_file" method="POST" enctype="multipart/form-data">
+    <label for="file">Select a file:</label>
+    <input type="file" name="file" id="file" required>
+    <button type="submit">Upload</button>
+</form>
+
+<p id="fileResult"></p>
+
+<hr>
+
+<h2>Messages from Database</h2>
+<ul id="message-list"></ul>
+
+<script>
+    // Handle message form submission via AJAX
+    document.getElementById('messageForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const message = document.getElementById('message').value;
+
+        fetch('/api/add_message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `message=${encodeURIComponent(message)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            const messageResult = document.getElementById('messageResult');
+            if (data.success) {
+                messageResult.textContent = data.message;
+                messageResult.className = 'message';
+                document.getElementById('message').value = '';  // Clear the form
+            } else {
+                messageResult.textContent = data.error;
+                messageResult.className = 'error';
+            }
+        })
+        .catch(error => {
+            document.getElementById('messageResult').textContent = 'Error submitting message';
+            document.getElementById('messageResult').className = 'error';
+        });
+    });
+
+    // Fetch and display messages from the database
+    fetch('/api/messages')
+        .then(response => response.json())
+        .then(data => {
+            const messageList = document.getElementById('message-list');
+            if (data.length > 0) {
+                data.forEach(message => {
+                    const li = document.createElement('li');
+                    li.textContent = message;
+                    messageList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.textContent = 'No messages found.';
+                messageList.appendChild(li);
+            }
+        })
+        .catch(error => {
+            const messageList = document.getElementById('message-list');
+            const li = document.createElement('li');
+            li.textContent = 'Error fetching messages.';
+            messageList.appendChild(li);
+        });
+</script>
+
+</body>
+</html>
