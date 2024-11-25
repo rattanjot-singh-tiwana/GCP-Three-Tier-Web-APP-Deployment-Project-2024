@@ -41,10 +41,8 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_REGION=${_REGION}
   - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}'
+  - 'IMAGE=gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
   id: "Apply Deployment"
-  env: [
-    'IMAGE=gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
-  ]
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'apply', 
