@@ -1,16 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image', '.']
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/my-image:$COMMIT_SHA'
+      - '.'
 images:
-  - 'gcr.io/$PROJECT_ID/my-image'
-  
-- name: 'gcr.io/cloud-builders/docker'
-  args: [
-    'push', 
-    'gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
-  ]
-  id: "Push Image to GCR"
-options:
-  logging: NONE
-
-  
+  - 'gcr.io/$PROJECT_ID/my-image:$COMMIT_SHA'
