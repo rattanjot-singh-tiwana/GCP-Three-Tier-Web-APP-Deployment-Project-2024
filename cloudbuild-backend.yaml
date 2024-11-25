@@ -6,7 +6,7 @@ steps:
     'gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA', 
     '.'
   ]
-  dir: ./backend
+  dir: .
   id: "Build Docker Image"
 - name: 'gcr.io/cloud-builders/docker'
   args: [
