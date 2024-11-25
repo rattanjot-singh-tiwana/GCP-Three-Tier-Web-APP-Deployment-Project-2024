@@ -19,9 +19,9 @@ steps:
     - 'container'
     - 'clusters'
     - 'get-credentials'
-    - '${_CLUSTER_NAME}'
+    - '${_CLOUDSDK_CONTAINER_CLUSTER}'
     - '--region'
-    - '${_REGION}'
+    - '${_CLOUDSDK_COMPUTE_REGION}'
     - '--project'
     - '${_PROJECT_ID}'
 - name: 'gcr.io/cloud-builders/kubectl'
@@ -43,9 +43,9 @@ steps:
   id: "Apply Service Configuration"
 
 substitutions:
-  _CLUSTER_NAME: "flaskcluster"
+  _CLOUDSDK_CONTAINER_CLUSTER: "flaskcluster"
   _PROJECT_ID: "keen-bongo-400523"
-  _REGION: "us-east1"
+  _CLOUDSDK_COMPUTE_REGION: "us-east1"
 timeout: "600s"
 
 options:
