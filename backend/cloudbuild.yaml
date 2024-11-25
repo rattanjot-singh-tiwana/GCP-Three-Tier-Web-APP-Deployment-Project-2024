@@ -24,14 +24,6 @@ steps:
     - '${_REGION}'
     - '--project'
     - '${_PROJECT_ID}'
-
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: [
-    'config', 
-    'set-cluster', 
-    '${_CLUSTER_NAME}'
-  ]
-  id: "Configure kubectl Context"
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'apply', 
