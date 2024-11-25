@@ -16,14 +16,36 @@ steps:
   id: "Push Image to GCR"
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
+    - 'config'
+    - 'set'
+    - 'project'
+    - '${_PROJECT_ID}'
+  id: 'Set Project'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - 'config'
+    - 'set'
+    - 'compute/region'
+    - '${_REGION}'
+  id: 'Set Region'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - 'config'
+    - 'set'
+    - 'compute/zone'
+    - '${_ZONE}'
+  id: 'Set Zone'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
     - 'container'
     - 'clusters'
     - 'get-credentials'
-    - '${_CLOUDSDK_CONTAINER_CLUSTER}'
+    - '${_CLUSTER_NAME}'
     - '--region'
-    - '${_CLOUDSDK_COMPUTE_REGION}'
-    - '--project'
-    - '${_PROJECT_ID}'
+    - '${_REGION}'
+    - '--zone'
+    - '${_ZONE}'
+  id: 'Authenticate with GKE'
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'apply', 
@@ -41,11 +63,11 @@ steps:
     'service.yml'
   ]
   id: "Apply Service Configuration"
-
 substitutions:
-  _CLOUDSDK_CONTAINER_CLUSTER: "flaskcluster"
+  _CLUSTER_NAME: "flaskcluster"
   _PROJECT_ID: "keen-bongo-400523"
-  _CLOUDSDK_COMPUTE_REGION: "us-east1"
+  _REGION: "us-east1"
+  _ZONE: "us-east1-c"
 timeout: "600s"
 
 options:
