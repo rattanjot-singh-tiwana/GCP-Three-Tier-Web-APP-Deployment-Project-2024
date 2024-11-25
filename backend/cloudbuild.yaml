@@ -18,24 +18,19 @@ steps:
   args:
     - 'config'
     - 'set'
-    - 'project'
-    - '$PROJECT_ID'
-  id: 'Set Project'
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-    - 'config'
-    - 'set'
     - 'compute/region'
-    - '$REGION'
+    - '${_REGION}'
   id: 'Set Region'
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
     - 'container'
     - 'clusters'
     - 'get-credentials'
-    - '$CLUSTER_NAME'
+    - '${_CLUSTER_NAME}'
     - '--region'
-    - '$REGION'
+    - '${_REGION}'
+    - '--project'
+    - '$PROJECT_ID'
   id: 'Authenticate with GKE'
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
@@ -61,7 +56,6 @@ steps:
   id: "Apply Service Configuration"
 substitutions:
   _CLUSTER_NAME: "flaskcluster"
-  _PROJECT_ID: "keen-bongo-400523"
   _REGION: "us-east1"
 timeout: "600s"
 
