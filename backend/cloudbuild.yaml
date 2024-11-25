@@ -15,11 +15,7 @@ steps:
   ]
   id: "Push Image to GCR"
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [
-    'container', 'clusters', 'get-credentials', 
-    '${_CLUSTER_NAME}', 
-    '--region', '${_REGION}'
-  ]
+    args: ['container', 'clusters', 'get-credentials', 'flaskcluster', '--zone', 'us-east1-c', '--project', 'keen-bongo-400523']
   id: "Get GKE Credentials"
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
