@@ -38,6 +38,12 @@ steps:
     - '${_REGION}'
   id: 'Authenticate with GKE'
 - name: 'gcr.io/cloud-builders/kubectl'
+  args:
+    - 'config'
+    - 'use-context'
+    - 'gke_$PROJECT_ID_$REGION_$CLUSTER_NAME'
+  id: 'Set Kubernetes Context'
+- name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'apply', 
     '-f', 
