@@ -18,7 +18,7 @@ def get_db_connection():
             'SERVER=34.138.16.33;'  # Replace with your server
             'DATABASE=myappdb;'  # Database name
             'UID=sqlserver;'  # Username
-            'PWD=sqlserver;'  # Password
+            'PWD=abc123;'  # Password
             'Encrypt=no;'
         )
         return conn
