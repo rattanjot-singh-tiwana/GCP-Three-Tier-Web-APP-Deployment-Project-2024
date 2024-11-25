@@ -14,6 +14,13 @@ steps:
     'gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
   ]
   id: "Push Image to GCR"
+  - name: 'gcr.io/cloud-builders/gcloud'
+  args: [
+    'container', 'clusters', 'get-credentials', 
+    '${_CLUSTER_NAME}', 
+    '--region', '${_REGION}'
+  ]
+  id: "Get GKE Credentials"
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'config', 
@@ -21,13 +28,6 @@ steps:
     '${_CLUSTER_NAME}'
   ]
   id: "Configure kubectl Context"
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: [
-    'container', 'clusters', 'get-credentials', 
-    '${_CLUSTER_NAME}', 
-    '--region', '${_REGION}'
-  ]
-  id: "Get GKE Credentials"
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'apply', 
