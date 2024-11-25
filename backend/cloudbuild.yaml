@@ -18,13 +18,13 @@ steps:
   args: [
     'config', 
     'set-cluster', 
-    '$CLUSTER_NAME'
+    '${_CLUSTER_NAME}'
   ]
   id: "Configure kubectl Context"
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [
     'container', 'clusters', 'get-credentials', 
-    '$CLUSTER_NAME', 
+    '${_CLUSTER_NAME}', 
     '--region', '$REGION'
   ]
   id: "Get GKE Credentials"
