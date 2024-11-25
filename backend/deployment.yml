@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: flask-sql-container
-        image: gcr.io/keen-bongo-400523/backend-flask-app
+        image: gcr.io/keen-bongo-400523/backend-flask-app:3e41830455125cd5d75c118e8981f1cb7f2879ca
         ports:
         - containerPort: 5000
