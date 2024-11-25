@@ -14,7 +14,7 @@ steps:
     'gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
   ]
   id: "Push Image to GCR"
-  - name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/cloud-builders/gcloud'
   args: [
     'container', 'clusters', 'get-credentials', 
     '${_CLUSTER_NAME}', 
