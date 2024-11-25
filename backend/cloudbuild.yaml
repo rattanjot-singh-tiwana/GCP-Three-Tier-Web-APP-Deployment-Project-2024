@@ -21,8 +21,13 @@ steps:
     '$CLUSTER_NAME'
   ]
   id: "Configure kubectl Context"
-
-# Step 4: Deploy to GKE
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [
+    'container', 'clusters', 'get-credentials', 
+    '$CLUSTER_NAME', 
+    '--region', '$REGION'
+  ]
+  id: "Get GKE Credentials"
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'apply', 
@@ -33,14 +38,6 @@ steps:
   env: [
     'IMAGE=gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
   ]
-
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: [
-    'container', 'clusters', 'get-credentials', 
-    '$CLUSTER_NAME', 
-    '--region', '$REGION'
-  ]
-  id: "Get GKE Credentials"
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'apply', 
