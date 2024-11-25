@@ -6,7 +6,7 @@ steps:
     'backend/Dockerfile',
     '-t', 
     'gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA', 
-    '.'
+    '/backend/'
   ]
   dir: .
   id: "Build Docker Image"
