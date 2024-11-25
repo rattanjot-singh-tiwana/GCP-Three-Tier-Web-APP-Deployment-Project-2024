@@ -8,7 +8,7 @@ steps:
     '.'
   ]
   dir: .
-  id: "Build Docker Image"]\
+  id: "Build Docker Image"
 
   - name: 'gcr.io/cloud-builders/docker'
   args: [
