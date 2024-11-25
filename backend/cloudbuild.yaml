@@ -41,7 +41,7 @@ steps:
   args:
     - 'config'
     - 'use-context'
-    - 'gke_$PROJECT_ID_$REGION_$CLUSTER_NAME'
+    - 'gke_${_PROJECT_ID}_${_REGION}_${_CLUSTER_NAME}'
   id: 'Set Kubernetes Context'
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
