@@ -25,7 +25,7 @@ steps:
   args: [
     'container', 'clusters', 'get-credentials', 
     '${_CLUSTER_NAME}', 
-    '--region', '$REGION'
+    '--region', '${_REGION}'
   ]
   id: "Get GKE Credentials"
 - name: 'gcr.io/cloud-builders/kubectl'
