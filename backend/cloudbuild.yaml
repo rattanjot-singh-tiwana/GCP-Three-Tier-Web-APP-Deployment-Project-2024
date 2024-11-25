@@ -47,7 +47,7 @@ steps:
   args: [
     'apply', 
     '-f', 
-    'service.yml'
+    'backend/service.yml'
   ]
   id: "Apply Service Configuration"
 substitutions:
