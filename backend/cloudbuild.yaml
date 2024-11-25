@@ -62,7 +62,6 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_REGION=${_REGION}'
   - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}'
-  - 'IMAGE=gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
   id: "Apply Service Configuration"
 substitutions:
   _CLUSTER_NAME: "flaskcluster"
