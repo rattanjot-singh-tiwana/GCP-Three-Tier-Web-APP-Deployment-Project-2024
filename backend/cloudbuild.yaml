@@ -8,12 +8,12 @@ steps:
   ]
   dir: ./backend
   id: "Build Docker Image"
-  options:
-    logging: CLOUD_LOGGING_ONLY  # Optional, if you want logs to be stored in Cloud Logging only
-    defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 - name: 'gcr.io/cloud-builders/docker'
   args: [
     'push', 
     'gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
   ]
   id: "Push Image to GCR"
+options:
+  logging: CLOUD_LOGGING_ONLY  # Optional, if you want logs to be stored in Cloud Logging only
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
