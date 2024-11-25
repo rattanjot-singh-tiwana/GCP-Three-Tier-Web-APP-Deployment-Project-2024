@@ -1,13 +1,12 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'build'
-      - '-t'
-      - 'gcr.io/$PROJECT_ID/my-image:$COMMIT_SHA'
-      - '.'
-images:
-  - 'gcr.io/$PROJECT_ID/my-image:$COMMIT_SHA'
-options:
-  logging: CLOUD_LOGGING_ONLY  # Optional, if you want logs to be stored in Cloud Logging only
-  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
-  
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build', 
+    '-t', 
+    'gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA', 
+    '.'
+  ]
+  dir: .
+  id: "Build Docker Image"
+  options:
+     logging: CLOUD_LOGGING_ONLY
