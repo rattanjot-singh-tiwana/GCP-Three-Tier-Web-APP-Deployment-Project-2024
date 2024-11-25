@@ -33,16 +33,14 @@ steps:
     - '$PROJECT_ID'
   id: 'Authenticate with GKE'
 - name: 'gcr.io/cloud-builders/kubectl'
-  args:
-    - 'config'
-    - 'current-context'
-  id: 'Check Current Context'
-- name: 'gcr.io/cloud-builders/kubectl'
   args: [
     'apply', 
     '-f', 
     'deployment.yml'
   ]
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=${_REGION}
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}'
   id: "Apply Deployment"
   env: [
     'IMAGE=gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA'
