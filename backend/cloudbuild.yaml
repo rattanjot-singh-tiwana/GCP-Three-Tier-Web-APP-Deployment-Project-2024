@@ -67,7 +67,7 @@ steps:
 substitutions:
   _CLUSTER_NAME: "flaskcluster"
   _REGION: "us-east1"
-  _IMAGE_NAME="gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA"
+  _IMAGE_NAME: "gcr.io/$PROJECT_ID/backend-flask-app:$COMMIT_SHA"
 timeout: "600s"
 
 options:
