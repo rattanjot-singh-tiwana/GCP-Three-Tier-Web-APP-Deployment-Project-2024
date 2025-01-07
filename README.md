@@ -8,4 +8,4 @@ Backend: A Python Flask application that processes the input data, connects to a
 Database: A simple database for storing user-submitted data (e.g., MySQL, PostgreSQL).
 Docker: Each component (frontend, backend, database) is containerized using Docker.
 Kubernetes: The application is deployed to Google Kubernetes Engine (GKE) for orchestration.
-Monitoring and Logging: Basic monitoring and logging for the Kubernetes cluster using Google Cloud Operations.
+Monitoring and Logging: Basic monitoring and logging for the Kubernetes cluster using Google Cloud Operation.
